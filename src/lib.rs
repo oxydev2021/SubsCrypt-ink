@@ -935,7 +935,7 @@ pub mod subscrypt {
             ProcessReturningData{
                 withdrawing_amount: sum,
                 current_linked_list_head: cur_id,
-                reduced_length: reduced_length
+                reduced_length,
             }
         }
     }
