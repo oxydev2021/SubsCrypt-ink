@@ -7,7 +7,7 @@ mod utils;
 
 #[cfg(test)]
 pub mod tests {
-    use crate::subscrypt::subscrypt::LinkedList;
+    use crate::subscrypt::utils::prelude::LinkedList;
     use crate::subscrypt::subscrypt::Subscrypt;
     use crate::utils::utils::{
         set_account_balance, set_caller, subscrypt_add_plan_routine, subscrypt_edit_plan_routine,

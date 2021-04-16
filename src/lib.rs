@@ -14,6 +14,8 @@
 
 #![cfg_attr(not(feature = "std"), no_std)]
 
+pub(crate) mod utils;
+
 #[ink_lang::contract]
 pub mod subscrypt {
     use core::convert::TryInto;
@@ -21,6 +23,8 @@ pub mod subscrypt {
     use ink_env::Error;
     use ink_storage::collections::HashMap;
     use ink_storage::traits::{PackedLayout, SpreadLayout};
+
+    use super::utils::prelude::*;
     /// This struct represents a subscription record
     /// # fields:
     /// * provider
@@ -103,23 +107,6 @@ pub mod subscrypt {
     pub struct User {
         pub list_of_providers: Vec<AccountId>,
         pub subs_crypt_pass_hash: [u8; 32],
-    }
-
-    /// Struct for handling payments of refund
-    /// # Description
-    ///
-    /// This LinkedList is used for keeping tracking of each subscription that will end in some
-    /// specific date in future. We order these subscriptions by their date of expiration, so we
-    /// will be able to easily calculate and handle refund - withdraw methods with a minimum
-    /// transaction fee. Each entity of the linked-list is `PaymentAdmission` struct.
-    #[derive(
-        scale::Encode, scale::Decode, PackedLayout, SpreadLayout, Debug,
-    )]
-    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
-    pub struct LinkedList {
-        pub head: u64,
-        pub back: u64,
-        pub length: u128,
     }
 
     /// Struct that represents amount of money that can be withdraw after its due date passed.
@@ -936,27 +923,6 @@ pub mod subscrypt {
                 withdrawing_amount: sum,
                 current_linked_list_head: cur_id,
                 reduced_length,
-            }
-        }
-    }
-
-    
-
-    impl Default for LinkedList {
-        fn default() -> Self {
-            Self::new()
-        }
-    }
-
-    impl LinkedList {
-        pub fn new() -> Self {
-            LinkedList::default()
-        }
-        pub fn default() -> Self {
-            Self {
-                back: 0,
-                head: 0,
-                length: 0,
             }
         }
     }
