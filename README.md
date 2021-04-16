@@ -2,12 +2,12 @@
 
 [![Rust](https://github.com/oxydev/SubsCrypt-ink/actions/workflows/rust.yml/badge.svg)](https://github.com/oxydev/SubsCrypt-ink/actions/workflows/rust.yml)
 
-This project is honored to be funded by Web3 Foundation grant program. You can find more info [here](https://github.com/w3f/Open-Grants-Program/blob/master/applications/SubsCrypt.md).
+This project is honored to be funded by Web3 Foundation grant program. 
 
 
 <img src="https://github.com/oxydev/SubsCrypt-docs/raw/master/images/web3%20foundation_grants_badge_black.png" width="300"/> <img src="https://github.com/oxydev/SubsCrypt-docs/raw/master/images/web3%20foundation_grants_badge_white.png" width="300"/> 
 
-This is ink! implementation of SubsCrypt. For more information please visit [online docs](https://oxydev.github.io/SubsCrypt-docs/#/).
+This is ink! implementation of SubsCrypt.
 
 ## Installing
 
@@ -35,7 +35,7 @@ npm install -g binaryen
 First of all you need to clone the repository, run:
 
 ```bash
-git clone https://github.com/oxydev/SubsCrypt-ink
+git clone https://github.com/oxydev2021/SubsCrypt-ink
 cd SubsCrypt-ink
 ```
 
@@ -66,4 +66,3 @@ Your contract artifacts are ready. You can find them in:
   - metadata.json (the contract's metadata)
 ```
 
-You can also use the pre-built version of our code and access to the WASM and metadata files, [here](https://github.com/oxydev/SubsCrypt-ink/blob/main/deploy/SubsCrypt.wasm) and [here](https://github.com/oxydev/SubsCrypt-ink/blob/main/deploy/metadata.json).
