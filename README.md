@@ -13,6 +13,8 @@ This is ink! implementation of SubsCrypt.
 
 Please make sure that you have these prerequisites installed on your computer:
 
+Follow the [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/) from the Substrate Developer Hub Knowledge Base.
+
 ```bash
 rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain stable
@@ -21,10 +23,14 @@ rustup target add wasm32-unknown-unknown --toolchain stable
 Then you have to install ink! command line utility which will make setting up Substrate smart contract projects easier:
 
 ```bash
-cargo install cargo-contract --vers 0.10.0 --force --locked
+cargo install cargo-contract --vers 0.11 --force --locked
 ```
 
-You also need the [binaryen](https://github.com/WebAssembly/binaryen) package installed on your computer which is used to optimize the WebAssembly bytecode of the contract, you can use npm to install it:
+You also need the [binaryen](https://github.com/WebAssembly/binaryen) package installed on your computer which is used to optimize the WebAssembly bytecode of the contract, 
+
+Many package managers have it available nowadays ‒ e.g. it's a package for [Debian/Ubuntu](https://tracker.debian.org/pkg/binaryen), [Homebrew](https://formulae.brew.sh/formula/binaryen) and [Arch Linux](https://archlinux.org/packages/community/x86_64/binaryen/).
+
+Or you can use npm to install it:
 
 ```bash
 npm install -g binaryen
