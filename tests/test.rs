@@ -7,8 +7,8 @@ mod utils;
 
 #[cfg(test)]
 pub mod tests {
-    use crate::subscrypt::utils::prelude::LinkedList;
     use crate::subscrypt::subscrypt::Subscrypt;
+    use crate::subscrypt::utils::prelude::LinkedList;
     use crate::utils::utils::{
         set_account_balance, set_caller, subscrypt_add_plan_routine, subscrypt_edit_plan_routine,
         subscrypt_provider_register_routine,
@@ -324,7 +324,11 @@ pub mod tests {
                 .unwrap(),
             &accounts.alice
         );
-        subscrypt.retrieve_whole_data_with_password(accounts.bob, "token".parse().unwrap(), "pass_phrase".parse().unwrap());
+        subscrypt.retrieve_whole_data_with_password(
+            accounts.bob,
+            "token".parse().unwrap(),
+            "pass_phrase".parse().unwrap(),
+        );
 
         let t: String = "new_token".to_string();
         let p: String = "new_pass_phrase".to_string();
@@ -333,10 +337,12 @@ pub mod tests {
         ink_env::hash_encoded::<Sha2x256, _>(&encodable, &mut output);
 
         subscrypt.set_subscrypt_pass(output);
-        subscrypt.retrieve_whole_data_with_password(accounts.bob, "new_token".parse().unwrap(), "new_pass_phrase".parse().unwrap());
-
+        subscrypt.retrieve_whole_data_with_password(
+            accounts.bob,
+            "new_token".parse().unwrap(),
+            "new_pass_phrase".parse().unwrap(),
+        );
     }
-
 
     /// Simple scenario that `alice` register as a provider and `bob` will subscribe to her second plan
     /// `alice` has two plans. One is daily and other is monthly.
