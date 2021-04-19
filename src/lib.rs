@@ -23,48 +23,9 @@ pub mod subscrypt {
     use ink_env::hash::Sha2x256;
     use ink_env::Error;
     use ink_storage::collections::HashMap;
-    use ink_storage::traits::{PackedLayout, SpreadLayout};
 
     use super::models::*;
     use super::utils::prelude::*;
-
-    /// This struct represents a provider
-    /// # fields:
-    /// * plans
-    /// * money_address : provider earned money will be sent to this address
-    /// * payment_manager : struct for handling refund requests
-    #[derive(scale::Encode, scale::Decode, PackedLayout, SpreadLayout, Debug)]
-    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
-    pub struct Provider {
-        pub(crate) plans: Vec<PlanConsts>,
-        pub(crate) money_address: AccountId,
-        payment_manager: LinkedList,
-    }
-
-    /// This struct represents a user
-    /// # fields:
-    /// * list_of_providers : list of providers that the user subscribed to
-    /// * subs_crypt_pass_hash : pass hash for retrieve data in subscrypt user dashboard
-    #[derive(scale::Encode, scale::Decode, SpreadLayout, PackedLayout, Debug)]
-    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
-    pub struct User {
-        pub list_of_providers: Vec<AccountId>,
-        pub subs_crypt_pass_hash: [u8; 32],
-    }
-
-    /// Struct that represents amount of money that can be withdraw after its due date passed.
-    #[derive(scale::Encode, scale::Decode, PackedLayout, SpreadLayout, Debug)]
-    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
-    struct DailyLockedAmount {
-        amount: u128,
-        next_day: u64,
-    }
-
-    pub struct ProcessReturningData {
-        withdrawing_amount: u128,
-        current_linked_list_head: u64,
-        reduced_length: u128,
-    }
 
     /// Main struct of contract
     /// # fields:
