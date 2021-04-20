@@ -67,6 +67,14 @@ pub mod subscrypt {
         prices: Vec<u128>,
     }
 
+    #[ink(event)]
+    pub struct AddPlan {
+        #[ink(topic)]
+        owner: AccountId,
+        durations: Vec<u64>,
+        prices: Vec<u128>,
+    }
+
     impl Subscrypt {
         #[ink(constructor)]
         pub fn new() -> Self {
@@ -185,6 +193,12 @@ pub mod subscrypt {
                     disabled: false,
                 });
             }
+
+            self.env().emit_event(AddPlan {
+                owner: caller,
+                durations,
+                prices,
+            });
         }
 
         /// Editing previously created plans of the `caller`
