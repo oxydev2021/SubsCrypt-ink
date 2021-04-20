@@ -60,7 +60,7 @@ pub mod subscrypt {
     }
 
     #[ink(event)]
-    pub struct ProviderRegister {
+    pub struct ProviderRegisterEvent {
         #[ink(topic)]
         address: AccountId,
         durations: Vec<u64>,
@@ -68,7 +68,7 @@ pub mod subscrypt {
     }
 
     #[ink(event)]
-    pub struct AddPlan {
+    pub struct AddPlanEvent {
         #[ink(topic)]
         owner: AccountId,
         durations: Vec<u64>,
@@ -137,7 +137,7 @@ pub mod subscrypt {
                 max_refund_permille_policies,
             );
 
-            self.env().emit_event(ProviderRegister {
+            self.env().emit_event(ProviderRegisterEvent {
                 address,
                 durations,
                 prices,
@@ -194,7 +194,7 @@ pub mod subscrypt {
                 });
             }
 
-            self.env().emit_event(AddPlan {
+            self.env().emit_event(AddPlanEvent {
                 owner: caller,
                 durations,
                 prices,
