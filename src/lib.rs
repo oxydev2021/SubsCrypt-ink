@@ -75,6 +75,15 @@ pub mod subscrypt {
         prices: Vec<u128>,
     }
 
+    #[ink(event)]
+    pub struct SubscribeEvent {
+        #[ink(topic)]
+        provider: AccountId,
+        #[ink(topic)]
+        plan_index: u128,
+        metadata: String,
+    }
+
     impl Subscrypt {
         #[ink(constructor)]
         pub fn new() -> Self {
@@ -357,7 +366,7 @@ pub mod subscrypt {
                 plan: consts,
                 plan_index,
                 subscription_time: time,
-                meta_data_encrypted: metadata,
+                meta_data_encrypted: metadata.clone(),
                 refunded: false,
             };
 
@@ -390,6 +399,12 @@ pub mod subscrypt {
                 (time + consts.duration - self.start_time) / 86400,
                 (self.env().transferred_balance() * consts.max_refund_permille_policy) / 1000,
             );
+
+            self.env().emit_event(SubscribeEvent {
+                provider: provider_address,
+                metadata,
+                plan_index,
+            });
         }
 
         /// Setting the `subs_crypt_pass_hash` of caller to `pass`
