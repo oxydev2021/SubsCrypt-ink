@@ -59,6 +59,14 @@ pub mod subscrypt {
         }
     }
 
+    #[ink(event)]
+    pub struct ProviderRegister {
+        #[ink(topic)]
+        address: AccountId,
+        durations: Vec<u64>,
+        prices: Vec<u128>,
+    }
+
     impl Subscrypt {
         #[ink(constructor)]
         pub fn new() -> Self {
@@ -115,11 +123,17 @@ pub mod subscrypt {
             self.providers.insert(caller, provider);
 
             self.add_plan(
-                durations,
+                durations.clone(),
                 active_session_limits,
-                prices,
+                prices.clone(),
                 max_refund_permille_policies,
             );
+
+            self.env().emit_event(ProviderRegister {
+                address,
+                durations,
+                prices,
+            });
         }
 
         /// Add plans to `provider` storage
