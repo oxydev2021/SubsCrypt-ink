@@ -1,4 +1,4 @@
-# SubsCrypt-ink!
+# SubsCrypt-ink!  ![](https://travis-ci.org/oxydev2021/SubsCrypt-ink.svg?branch=main)
 
 [![Rust](https://github.com/oxydev/SubsCrypt-ink/actions/workflows/rust.yml/badge.svg)](https://github.com/oxydev/SubsCrypt-ink/actions/workflows/rust.yml)
 
