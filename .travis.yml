@@ -1,3 +1,4 @@
+dist: bionic
 language: rust
 rust:
   - nightly
@@ -5,6 +6,7 @@ jobs:
   fast_finish: true
 cache: cargo
 before_script:
+  - apt install binaryen
   - cargo install cargo-contract --vers ^0.11 --force --locked
 script:
   - cargo contract build --verbose
