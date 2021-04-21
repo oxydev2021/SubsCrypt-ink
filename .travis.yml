@@ -1,13 +1,18 @@
-dist: bionic
+dist: focal
+addons:
+  apt:
+    packages:
+    - binaryen
 language: rust
 rust:
   - nightly
 jobs:
   fast_finish: true
 cache: cargo
-before_script:
-  - apt install binaryen
-  - cargo install cargo-contract --vers ^0.11 --force --locked
+before_install: 
+  - rustup component add rust-src
+install:
+  - cargo install cargo-contract --force
 script:
-  - cargo contract build --verbose
-  - cargo test --verbose
+  - cargo contract build
+  - cargo test
