@@ -1,4 +1,5 @@
 use ink_env::AccountId;
+use ink_prelude::{string::String, vec::Vec};
 use ink_storage::traits::{PackedLayout, SpreadLayout};
 
 use super::utils::prelude::*;

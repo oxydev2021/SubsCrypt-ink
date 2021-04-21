@@ -22,6 +22,9 @@ pub mod subscrypt {
     use core::convert::TryInto;
     use ink_env::hash::Sha2x256;
     use ink_env::Error;
+    use ink_prelude::string::String;
+    use ink_prelude::vec;
+    use ink_prelude::vec::Vec;
     use ink_storage::collections::HashMap;
 
     use super::models::*;
