@@ -1,18 +1,18 @@
 dist: focal
-addons:
-  apt:
-    packages:
-    - binaryen
 language: rust
 rust:
   - nightly
 jobs:
   fast_finish: true
-cache: cargo
 before_install: 
   - rustup component add rust-src
 install:
   - cargo install cargo-contract --force
+before_script:
+  - wget https://github.com/WebAssembly/binaryen/releases/download/version_101/binaryen-version_101-x86_64-linux.tar.gz
+  - tar -xvf binaryen-version_101-x86_64-linux.tar.gz
+  - sudo cp -r binaryen-version_101/* /usr/
+  - tar -xvf binaryen-version_101-x86_64-linux.tar.gz
 script:
   - cargo contract build
-  - cargo test
+  - env RUST_BACKTRACE=1 cargo test
